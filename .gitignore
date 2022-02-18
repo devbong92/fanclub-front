@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+## 기존세팅 이외 추가 사항  
+package-lock.json
