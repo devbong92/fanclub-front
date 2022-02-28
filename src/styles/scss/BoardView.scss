@@ -1,0 +1,10 @@
+.card-text{
+    white-space: pre-wrap; // 개행문자(/n) 줄바꿈 처리
+}
+
+.spinner-border{ //안먹음.
+    display: block;
+    position: fixed;
+    top: calc(50%-(58px / 2));
+    right: calc(50%- (58px / 2));
+}
