@@ -16,7 +16,7 @@ function App() {
       <Container fluid className="p-0">
         <Navbar bg="dark" variant="dark" expand="lg">
           <Navbar.Brand href="/">
-          
+            
             YONI FANS
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -41,6 +41,7 @@ function App() {
             <Route path='/board/list' element={<BoardList/>} ></Route>
             <Route path='/board/add' element={<BoardRegister/>} ></Route>
             <Route path='/board/:boardId' element={<BoardView/>} ></Route>
+            <Route path='/board/edit/:boardId' element={<BoardRegister/>} ></Route>
           </Routes>
       </Container>
     </BrowserRouter>

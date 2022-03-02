@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { Board } from "../../components/dto/Board";
-import { Button, Col, Row } from "react-bootstrap";
+import { Badge, Button, Col, Row } from "react-bootstrap";
 import '../../styles/scss/BoardList.scss';
 import { useNavigate } from "react-router-dom";
-import moment from "moment";
+import moment, { now } from "moment";
 import 'moment/locale/ko';
 
 
@@ -38,9 +38,10 @@ const BoardList: React.FC = (props : any) => {
           {
             boardList.map((board: Board) =>
               <Row className="py-2 board" key={board.boardId} onClick={() => navigate(`/board/${board.boardId}`)}>
-                <Col xs={8}>{board.title}</Col>
+                <Col xs={8}>{ moment(board.createdAt) > moment().subtract(1,'days') && <Badge >new</Badge> } {board.title}</Col>
                 <Col xs={2} className="text-right">{board.boardType}</Col>
-                <Col xs={2} className="text-right">{moment(board.createdAt).format('YYYY-MM-DD HH:mm:ss')}</Col>
+                <Col xs={2} className="text-right">{moment(board.createdAt).format('YYYY-MM-DD')}</Col>
+                
               </Row>)
           }
         </>
