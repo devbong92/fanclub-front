@@ -8,6 +8,7 @@ import BoardList from './pages/board/BoardList';
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import Home from './pages/Home';
 import BoardView from './pages/board/BoardView';
+import { NavLink } from 'react-router-dom';
 
 function App() {
   return (
@@ -32,6 +33,10 @@ function App() {
                 <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
               </NavDropdown>
             </Nav>
+            <Nav >
+              <Link to="/login" className="nav-link" >로그인</Link>
+            </Nav>
+            
           </Navbar.Collapse>      
         </Navbar>
       </Container>

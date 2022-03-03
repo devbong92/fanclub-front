@@ -55,9 +55,6 @@ const BoardRegister: React.FC = () => {
             boardId: board.boardId
         }
 
-        console.log('  board => {}', board);
-        console.log('  inputBoard => {}', inputBoard);
-
         // set state
         setBoard(inputBoard);
 
