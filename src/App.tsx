@@ -9,6 +9,10 @@ import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import Home from './pages/Home';
 import BoardView from './pages/board/BoardView';
 import { NavLink } from 'react-router-dom';
+import Login from './pages/users/Login';
+import SignUp from './pages/users/SignUp';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -23,8 +27,8 @@ function App() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Link to="/board/list" className="nav-link" >LIST</Link>
-              <Link to="/board/add" className="nav-link" >Add</Link>
+              <Link to="/board/list" className="nav-link" >게시글</Link>
+              <Link to="/board/add" className="nav-link" >등록</Link>
               <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -39,6 +43,7 @@ function App() {
             
           </Navbar.Collapse>      
         </Navbar>
+        <ToastContainer />
       </Container>
       <Container className='p-5'>
           <Routes>
@@ -47,6 +52,8 @@ function App() {
             <Route path='/board/add' element={<BoardRegister/>} ></Route>
             <Route path='/board/:boardId' element={<BoardView/>} ></Route>
             <Route path='/board/edit/:boardId' element={<BoardRegister/>} ></Route>
+            <Route path='/login' element={<Login/>} ></Route>
+            <Route path='/signup' element={<SignUp/>} ></Route>
           </Routes>
       </Container>
     </BrowserRouter>

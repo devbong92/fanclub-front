@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { Board } from "../../components/dto/Board";
-import { Badge, Button, Col, Pagination, Row } from "react-bootstrap";
+import { Badge, Button, Col, Pagination, Row, Table } from "react-bootstrap";
 import '../../styles/scss/BoardList.scss';
 import { useNavigate } from "react-router-dom";
 import moment, { now } from "moment";
@@ -42,27 +42,26 @@ const BoardList: React.FC = (props : any) => {
         let lastPage = startPage + 4 > totalPage ? totalPage : startPage + 4 ;
         
 
-        console.log("lastPage : "+lastPage);
-        console.log("totalPage : "+totalPage);
         if(lastPage - startPage < 4){
-          console.log("?");
           startPage = lastPage -4 ;
         } 
         setTotalElements(res.data.totalElements);
         setCalcPage(res.data.number * res.data.size);
 
 
-        console.log(" data => {} ",res.data);
-        if(res.data.last){
+        if(pageNumber > 1){
           pageItems.push(
-            <Pagination.First key={0} onClick={() => getBoardList(0)} />
+            <Pagination.First key={-9} onClick={() => getBoardList(0)} />
           );
         }
 
+        if(pageNumber > 0){
+          pageItems.push(
+            <Pagination.Prev onClick={() => getBoardList(pageNumber)} key={-1} />
+          )
+        }
+        
 
-        console.log("pageNumber : {}  >> {}",pageNumber, pageNumber-2 );
-        console.log(" startPage => {}",startPage);
-        console.log(" ??? {} ",pageNumber+1 > 2 ? pageNumber-1 : 1);
 
         for (let number = startPage ; number <= lastPage; number++) {
           
@@ -72,7 +71,13 @@ const BoardList: React.FC = (props : any) => {
             </Pagination.Item>,
           );
         }
-        if(res.data.first){
+
+        if(pageNumber+1 < totalPage){
+          pageItems.push(
+            <Pagination.Next onClick={() => getBoardList(pageNumber+2)} key={-2} />
+          )
+        }
+        if(pageNumber+2 < totalPage){
           pageItems.push(
             <Pagination.Last key={totalPage+1} onClick={() => getBoardList(totalPage)}/>
           );
@@ -94,7 +99,7 @@ const BoardList: React.FC = (props : any) => {
               <Button variant="primary" onClick={() => navigate('/board/add')}>등 록</Button>
             </Col>
           </Row>
-          {
+          {/* {
             boardList.map((board: Board, index) =>
               <Row className="py-2 board" key={board.boardId} onClick={() => navigate(`/board/${board.boardId}`)}>
                 <Col xs={1} >{totalElements - (calcPage + index)}</Col>
@@ -103,9 +108,40 @@ const BoardList: React.FC = (props : any) => {
                 <Col xs={2} className="text-right">{moment(board.createdAt).format('YYYY-MM-DD')}</Col>
                 
               </Row>)
-          }
-
-          <Pagination>{pages}</Pagination>
+          } */}
+          <Table striped bordered hover variant="dark">
+            <colgroup>
+                <col style={{ width: '5%' }} ></col>
+                <col style={{ width: '60%' }}></col>
+                <col style={{ width: '15%' }}></col>
+                <col style={{ width: '40%' }}></col>
+            </colgroup>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>제목</th>
+                <th>타입</th>
+                <th>작성일자</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                boardList.map((board: Board, index) =>
+                <tr key={board.boardId} onClick={() => navigate(`/board/${board.boardId}`)} >
+                  <td>{totalElements - (calcPage + index)}</td>
+                  <td>{ moment(board.createdAt) > moment().subtract(1,'days') && <Badge >new</Badge> } {board.title}</td>
+                  <td>{board.boardType}</td>
+                  <td>{moment(board.createdAt).format('YYYY-MM-DD')}</td>
+                </tr>
+                )
+              }
+              
+            </tbody>
+          </Table>
+          <Row>
+            <Pagination>{pages}</Pagination>
+          </Row>
+          
 
         </>
       );
