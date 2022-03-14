@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 // bootstrap css 적용 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -13,6 +14,9 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+// JWT 사용을 위한 설정 
+axios.defaults.withCredentials = true;
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

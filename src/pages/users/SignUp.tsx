@@ -14,7 +14,7 @@ const SignUp = (props: any) => {
         console.log("val => {} ",values);
         const {email, password, username} = values;
         
-        await axios.post('/api/auth/signup', {email, password, username}).then((res) => {      
+        await axios.post('/auth/signup', {email, password, username}).then((res) => {      
 
             toast.success('회원등록하였습니다. 로그인하세요', {
                 position: "top-center",
