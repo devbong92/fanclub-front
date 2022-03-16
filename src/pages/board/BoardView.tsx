@@ -1,7 +1,7 @@
 import axios from "axios";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import { Button, Card, Container, Modal, Row, Spinner } from "react-bootstrap";
+import { Button, Card, Modal, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { Board } from "../../components/dto/Board";
 import '../../styles/scss/BoardView.scss';

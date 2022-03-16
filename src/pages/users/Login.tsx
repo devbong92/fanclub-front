@@ -1,13 +1,9 @@
-import { type } from "@testing-library/user-event/dist/type";
 import axios from "axios";
 import { Formik } from "formik";
-import moment from "moment";
-import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
-import { number } from "yup/lib/locale";
 import { getCookie, setCookie } from "../../utils/Cookie";
 
 
@@ -95,7 +91,7 @@ const Login = (props: any) => {
               validationSchema={Yup.object().shape({
                 email: Yup.string()
                   .email("이메일형식으로 입력하세요")
-                  .required("필수필드 입니다."),
+                  .required("필수필드 입니다."), 
                 password: Yup.string()
                   .required("필수필드 입니다.")
               })}>

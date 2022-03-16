@@ -4,7 +4,7 @@ import { Board } from "../../components/dto/Board";
 import { Badge, Button, Col, Pagination, Row, Table } from "react-bootstrap";
 import '../../styles/scss/BoardList.scss';
 import { useNavigate } from "react-router-dom";
-import moment, { now } from "moment";
+import moment from "moment";
 import 'moment/locale/ko';
 
 
