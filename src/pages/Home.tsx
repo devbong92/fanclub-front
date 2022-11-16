@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 const Home: React.FC = () => {
 
 
-    return(
+    return( 
         <Container>
             메인 페이지 
         </Container>
